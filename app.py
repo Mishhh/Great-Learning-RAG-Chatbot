@@ -41,19 +41,17 @@ It automatically scrapes course pages, builds a knowledge base, and answers your
 with st.sidebar:
     st.header("⚙️ Configuration")
 
-    st.markdown("""
-    Adjust your scraping settings here.
-    """)
+    st.markdown("Manage your scraping and knowledge base settings below.")
 
     max_courses = st.number_input(
-        "📚 Number of Courses to Scrape",
+        "📑 Number of Courses to Scrape",
         min_value=5,
         max_value=50,
         value=10,
         step=5
     )
 
-    build_kb = st.button("🚀 Build Knowledge Base")
+    build_kb = st.button("💡 Build Knowledge Base")
 
     st.markdown("---")
     st.info("After building the knowledge base, scroll down to ask course-related questions.")
@@ -89,7 +87,7 @@ def load_and_process_docs(urls):
     status = st.empty()
 
     for i, u in enumerate(urls):
-        status.text(f"📄 Loading course page {i+1}/{len(urls)}")
+        status.text(f"⏳ Loading course page {i+1}/{len(urls)}")
         try:
             loader = WebBaseLoader(web_paths=[u])
             docs.extend(loader.load())
@@ -151,8 +149,17 @@ if "retriever" in st.session_state:
     st.markdown("## 💬 Ask Questions About Courses")
     st.markdown("""
     Type any question about the scraped courses below.
-    The AI will answer using only the information extracted from the course pages.
+     It will answer using only the information extracted from the course pages.
     """)
+
+    # ---------------------------------------------------
+    # SHOW COURSE LIST
+    #  ---------------------------------------------------
+    if "urls" in st.session_state:
+        with st.expander("🔗 View scraped Course URLs", expanded=False):
+            for u in st.session_state["urls"]:
+                st.markdown(f"[{u}]({u})")
+
 
     query = st.text_input("🔎 Enter your question:", placeholder="e.g., Does the course provide a certificate?")
 
@@ -208,13 +215,5 @@ if "retriever" in st.session_state:
 
             answer = rag_chain.invoke(query)
 
-        st.subheader("📘 Answer")
+        st.subheader("✨ Answer")
         st.write(answer)
-
-# ---------------------------------------------------
-# SHOW COURSE LIST
-# ---------------------------------------------------
-if "urls" in st.session_state:
-    with st.expander("📄 View scraped Course URLs", expanded=False):
-        for u in st.session_state["urls"]:
-            st.markdown(f"[{u}]({u})")
