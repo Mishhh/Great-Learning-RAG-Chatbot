@@ -87,7 +87,9 @@ HUGGINGFACEHUB_API_TOKEN=hf_XXXXXXXXXXXXXXXXXXXX
 
     "Suggest courses for beginner data analysts"
 
-    "Which course has the best rating?"
+    "List the courses that include hands-on exercises"
+
+    "Which courses are best for absolute beginners?"
 
     "Summarize all Python-related courses"
 
