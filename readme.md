@@ -1,7 +1,7 @@
 # 🎓 Great Learning RAG Pipeline/Chatbot
 A Streamlit-based RAG (Retrieval-Augmented Generation) pipeline/chatbot that scrapes GreatLearning Academy course pages, builds a vector database, and answers questions using LLMs.
 
- 🔗 **Live Demo:** [View on Streamlit]()
+ 🔗 **Live Demo:** [View on Streamlit](https://great-learning-rag-chatbot-qvhftpkzxhngmkqeygfrzp.streamlit.app/)
   
 
 ## 🚀 Project Overview
