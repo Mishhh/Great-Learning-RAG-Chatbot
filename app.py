@@ -217,3 +217,12 @@ if "retriever" in st.session_state:
 
         st.subheader("✨ Answer")
         st.write(answer)
+
+# ------------------------#
+#  Footer
+# ------------------------#
+st.markdown("---")
+st.caption(
+    "Built with ❤️ using Streamlit, LangChain, HuggingFace & ChromaDB | Data Source: My Great Learning  | Developer: Mishalee Lambat"
+)
+
