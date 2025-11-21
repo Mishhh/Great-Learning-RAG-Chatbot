@@ -27,12 +27,11 @@ It includes:
 
 ✔️ Vectorization
   - Uses all-MiniLM-L6-v2 for embedding
-  - Index stored in memory (or can be stored locally)
 
 ✔️ LLM-Powered Query
   - For any user question, system fetches best chunks from vector store
   - Sends them to HuggingFace Inference API
-  - Uses environment variable for API key (no manual typing)
+  - Uses environment variable for API key
 
 ✔️ Fully Interactive UI
   - Left sidebar for scraping
