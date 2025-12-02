@@ -1,42 +1,46 @@
-# 🎓 Great Learning RAG Pipeline/Chatbot
-A Streamlit-based RAG (Retrieval-Augmented Generation) pipeline/chatbot that scrapes GreatLearning Academy course pages, builds a vector database, and answers questions using LLMs.
+# 🎓 GreatLearning RAG Chatbot
 
- 🔗 **Live Demo:** [View on Streamlit](https://great-learning-rag-chatbot-qvhftpkzxhngmkqeygfrzp.streamlit.app/)
-  
+A **Streamlit-based Retrieval-Augmented Generation (RAG) pipeline** for exploring **GreatLearning Academy courses**. This app scrapes course pages, builds a vector database, and allows AI-powered question answering.
+
+🔗 **Live Demo:** [View on Streamlit](#)  <!-- Replace with your actual link -->
+
+---
 
 ## 🚀 Project Overview
 
-This project is an end-to-end Retrieval-Augmented Generation (RAG) pipeline designed to help users explore and query online course content.
-It includes:
-  - 🔍 Course Scraper – Extracts course titles, URLs, descriptions, and ratings
-  - 🧹 Text Cleaning & Preprocessing
-  - 📄 Vector Store Indexing using Sentence Transformers
-  - 🤖 LLM-based Question Answering using HuggingFace Inference API
-  - 🌐 Streamlit Web App – Clean UI to scrape, store, and query courses
+This project is an **end-to-end RAG pipeline** designed to help users query **GreatLearning Academy course content**:
 
-## 🚀 Features
-✔️ Scrape Courses 
-  - Fetch up to 10+ courses from any valid Udemy/Coursera category URL
-  - Keeps previously scraped list visible—no flash/reset
-  - Proper URL clickability within Streamlit
+- 🔍 **Course Scraper** – Extracts course titles, descriptions, URLs, duration, ratings, learners, and projects.
+- 🧹 **Text Cleaning & Preprocessing** – Cleans HTML, normalizes whitespace, and prepares text for embedding.
+- 📄 **Vector Store Indexing** – Uses **HuggingFace sentence-transformers/all-MiniLM-L6-v2** for embeddings.
+- 🤖 **LLM-based Question Answering** – Uses **Google Gemini API** for AI-powered answers.
+- 🌐 **Interactive Streamlit UI** – Sidebar for scraping and keyword selection, main panel for queries and results.
 
-✔️ Clean & Prepare Data
-  - Removes HTML tags, emojis, special chars
-  - Normalizes whitespace
-  - Simple text preprocessing pipeline
+---
 
-✔️ Vectorization
-  - Uses all-MiniLM-L6-v2 for embedding
+## 🛠 Features
 
-✔️ LLM-Powered Query
-  - For any user question, system fetches best chunks from vector store
-  - Sends them to HuggingFace Inference API
-  - Uses environment variable for API key
+✔️ **Flexible Course Scraping**  
+- Search by **Free Courses**, **Premium Courses**, or **Career Paths**.  
+- Automatically converts career path queries to **hyphenated URLs**.  
+- Stores previously scraped results in **session state**.  
+- Properly clickable course links in the Streamlit app.
 
-✔️ Fully Interactive UI
-  - Left sidebar for scraping
-  - Main area for search
-  - Clean responsive layout
+✔️ **Metadata Extraction**  
+- Title, description, duration, level, learners, projects, ratings.  
+- Handles both **courses and career paths** separately.
+
+✔️ **RAG Query System**  
+- Scraped course content is split into **chunks** for embeddings.  
+- User question retrieves relevant course chunks.  
+- Generates answers **grounded in scraped course content**.  
+
+✔️ **Clean UI**  
+- Left sidebar for selecting course type & entering keywords.  
+- Main area for displaying course summaries & interactive Q&A.  
+- "Clear Results" button to reset previous searches.  
+
+---
 
 🧩 Project Structure
 
@@ -61,45 +65,43 @@ It includes:
 
 Create a .env file:
 
-HUGGINGFACEHUB_API_TOKEN=hf_XXXXXXXXXXXXXXXXXXXX
+GOOGLE_API_KEY=your_google_api_key_here
 
 
 ### 4. Run App
     streamlit run app.py
 
 ## 🎯 How It Works
-### 1. Scraping  
-- User enters a course category URL → Scraper extracts all course metadata.
+### 1. Select & Scrape Courses
+ - Choose Free Courses, Premium Courses, or Career Paths.
+ - Enter keywords (e.g., Machine Learning Engineer).
+ - Career path keywords automatically use hyphens for URL search.
 
-### 2. Preprocessing
-- Text gets cleaned and simplified.
+### 2. Metadata Extraction
+ - Scrapes course titles, descriptions, durations, levels, learners, projects, ratings, and links.
+ - Stores results in Streamlit session state.
 
-### 3. Embedding
+### 3. Build Vector Database
+ - Extracted text is split into chunks using RecursiveCharacterTextSplitter.
+ - Converted into embeddings via sentence-transformers/all-MiniLM-L6-v2.
+ - Stored in Chroma vector DB for retrieval.
 
-- System converts course descriptions into vector embeddings.
-
-### 4. RAG Querying
-
-- User asks a question → System retrieves best-matched courses → LLM generates an answer grounded in local data.
-
-## 🧪 Example Use Cases
-
-    "Suggest courses for beginner data analysts"
-
-    "List the courses that include hands-on exercises"
-
-    "Which courses are best for absolute beginners?"
-
-    "Summarize all Python-related courses"
+### 4. AI-Powered Question Answering
+ - User enters a question in the main panel.
+ - Relevant course chunks retrieved from the vector DB.
+ - Google Gemini LLM generates concise, grounded answers.
 
 ## 🛠 Technologies Used
   - Python 3.10+
   - Streamlit
   - BeautifulSoup / Requests
-  - SentenceTransformers
-  - FAISS
-  - HuggingFace Inference API
+  - HuggingFace Sentence Transformers
+  - Chroma vector store
+  - Google Gemini API
   - dotenv
 
 ## 📦 Future Enhancements
-- Add multi-provider scraping (Udemy + Coursera + edX)
+ - Multi-provider scraping (Coursera, Udemy, edX).
+ - Improved caching for faster vector DB build.
+ - User authentication for personalized queries.
+ - Dashboard analytics for course recommendations.
