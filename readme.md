@@ -2,7 +2,7 @@
 
 A **Streamlit-based Retrieval-Augmented Generation (RAG) pipeline** for exploring **GreatLearning Academy courses**. This app scrapes course pages, builds a vector database, and allows AI-powered question answering.
 
-🔗 **Live Demo:** [View on Streamlit](#)  <!-- Replace with your actual link -->
+🔗 **Live Demo:** [View on Streamlit](https://great-learning-rag-chatbot-qvhftpkzxhngmkqeygfrzp.streamlit.app/)  
 
 ---
 
